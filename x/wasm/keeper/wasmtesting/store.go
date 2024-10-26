@@ -24,3 +24,10 @@ type mockCMS struct {
 func (m *mockCMS) Write() {
 	*m.committed = true
 }
+
+func (m *mockCMS) Copy() storetypes.CacheMultiStore {
+	return &mockCMS{
+		CommitMultiStore: m.CommitMultiStore,
+		committed:        m.committed,
+	}
+}
